@@ -1,0 +1,25 @@
+<div class="responsive-grid">
+
+  {% comment %} <div class="responsive-card text-center">
+    <p class="text-sm text-gray-600">Purchased Products</p>
+    <p class="text-2xl font-semibold">{{ purchased_count }}</p>
+  </div> {% endcomment %}
+
+  <div class="responsive-card text-center">
+    <p class="text-sm text-gray-600">Account Status</p>
+    <p class="{% if user.profile.verified %}status-active{% else %}status-unverified{% endif %}">
+      {% if user.profile.verified %}Active{% else %}Unverified{% endif %}
+    </p>
+  </div>
+
+  {% comment %} <div class="responsive-card text-center">
+    <p class="text-sm text-gray-600">Your Products</p>
+    <a href="{% url 'shop:purchases' %}" class="text-link">Download Here</a>
+  </div> {% endcomment %}
+
+  {% comment %} <div class="responsive-card text-center">
+    <p class="text-sm text-gray-600">Contact Support</p>
+    <a href="{% url 'core:support' %}" class="text-link">Need help?</a>
+  </div> {% endcomment %}
+
+</div>

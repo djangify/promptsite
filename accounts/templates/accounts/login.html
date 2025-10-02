@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Log in{% endblock %}
+<!-- profiles/templates/profiles/login.html -->
+{% block content %}
+  <div class="flex flex-col items-center justify-center mt-12 text-2xl font-semibold text-gray-900 px-6 py-8 mx-auto md:h-screen lg:py-0">
+      LOG IN HERE
+      <section class="auth-section">
+      <div class="auth-card">
+        <h1>Sign in to your account</h1>
+        <form method="POST">
+          {% csrf_token %}
+          <label for="username">Username</label>
+          <input type="text" name="username" id="username" required>
+
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" required>
+
+          <button type="submit">Sign in</button>
+        </form>
+        <p>Don’t have an account? <a href="{% url 'accounts:register' %}">Register</a></p>
+        <p><a href="{% url 'accounts:password_reset' %}">Forgot password?</a></p>
+      </div>
+    </section>
+    </div>
+    </div>
+  </div>
+
+
+{% endblock %}

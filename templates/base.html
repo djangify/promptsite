@@ -7,6 +7,11 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="bg-gray-100 text-gray-900 font-sans flex flex-col min-h-screen">
+  {% if messages %}
+      <section aria-label="Notifications" role="alert">
+          {% include 'partials/_messages.html' %}
+      </section>
+    {% endif %}
 
   <!-- Header -->
   <header class="bg-white shadow">
@@ -18,7 +23,7 @@
         <a href="{% url 'prompt_generator:generator_list' %}" class="text-gray-600 hover:text-gray-900">Home</a>
         <a href="#" class="text-gray-600 hover:text-gray-900">About</a>
         <a href="#" class="text-gray-600 hover:text-gray-900">Contact</a>
-        <a href="#" class="text-gray-600 hover:text-gray-900">Dashboard</a>
+        <a href="{% url 'accounts:dashboard' %}" class="text-gray-600 hover:text-gray-900">Dashboard</a>
       </nav>
     </div>
   </header>
@@ -39,6 +44,13 @@
       </div>
     </div>
   </footer>
+
+  <!-- Scripts -->
+    <script src="{% static 'js/messages.js' %}"></script>
+    <script src="{% static 'js/favourite-prompt.js' %}"></script>
+ 
+    
+    {% block scripts %}{% endblock %}
 
 </body>
 </html>

@@ -1,0 +1,69 @@
+{% extends "base.html" %} {% block content %}
+
+<!-- profiles/templates/profiles/signup.html -->
+<section class="bg-gray-50 dark:bg-gray-900">
+  <div
+    class="flex flex-col items-center justify-center mt-12 text-2xl font-semibold text-gray-900 px-6 py-8 mx-auto md:h-screen lg:py-0"
+  >
+      REGISTER HERE
+    
+    
+
+        {% if messages %} {% for message in messages %}
+        <div
+          class="p-4 mb-4 text-sm {% if message.tags == 'error' %}text-red-800 bg-red-50{% else %}text-teal-700 bg-green-50{% endif %} rounded-lg"
+        >
+          {{ message }}
+        </div>
+        {% endfor %} {% endif %} {% if form.errors %}
+        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">
+          {% for field in form %} {% for error in field.errors %}
+          <p class="font-medium">{{ error }}</p>
+          {% endfor %} {% endfor %} {% for error in form.non_field_errors %}
+          <p class="font-medium">{{ error }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <form class="space-y-4 md:space-y-6" method="POST">
+          {% csrf_token %}
+
+       <section class="auth-section">
+  <div class="auth-card">
+    <h1>Create an account</h1>
+    <p class="prose prose-lg font-semibold mb-6">
+       Get access to free resources and download your products.
+    </p>
+    <form method="POST">
+      {% csrf_token %}
+      <label for="first_name">First Name</label>
+      <input type="text" name="first_name" id="first_name" required>
+
+      <label for="last_name">Last Name</label>
+      <input type="text" name="last_name" id="last_name" required>
+
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" required>
+
+      <label for="email">Email address</label>
+      <input type="email" name="email" id="email" required>
+
+      <label for="password1">Password</label>
+      <input type="password" name="password1" id="password1" required>
+
+      <label for="password2">Confirm password</label>
+      <input type="password" name="password2" id="password2" required>
+
+      <div class="auth-checkbox">
+        <input type="checkbox" id="terms" required>
+        <label for="terms">I accept the <a href="/policy/terms-conditions">Terms and Conditions</a></label>
+      </div>
+
+      <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="{% url 'accounts:login' %}">Log in</a></p>
+  </div>
+</section>
+
+
+{% endblock %}

@@ -12,4 +12,5 @@ urlpatterns = [
     path("", home, name="home"),
     path("admin/", admin.site.urls),
     path("prompts/", include("prompt_generator.urls")),
+    path("accounts/", include("accounts.urls", namespace="accounts")),
 ]

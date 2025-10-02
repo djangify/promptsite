@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="pageformat space-y-12">
+
+  <!-- Welcome -->
+  <h1>Welcome back, {{ user.first_name|default:user.username }}</h1>
+
+  <!-- Quick stats and Quick actions -->
+  {% include 'accounts/includes/dashboard_quick_actions.html' %}
+
+    <!-- Saved Prompts -->
+  {% include 'accounts/includes/dashboard_saved_prompts.html' %}
+
+  <!-- Wishlist -->
+  {% comment %} <div>
+    <h2 class="leading-normal">Your Wish List</h2>
+    {% include 'accounts/includes/dashboard_wishlist.html' %}
+  </div> {% endcomment %}
+
+  <!-- Free Resources -->
+  {% comment %} <div>
+    <h2 class="leading-normal">Free Member Resources</h2>
+    {% include 'accounts/includes/profile_resources.html' %}
+  </div> {% endcomment %}
+
+</div>
+{% endblock %}

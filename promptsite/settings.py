@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "prompt_generator",
     "prompts",
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -118,6 +119,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+AUTHENTICATION_BACKENDS = [
+    "accounts.backends.EmailOrUsernameModelBackend",  # our custom backend
+    "django.contrib.auth.backends.ModelBackend",  # default
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
