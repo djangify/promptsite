@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="text-3xl font-bold mb-6">Prompt Library</h1>
+  
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {% for prompt in prompts %}
+    <div class="p-6 border border-gray-200 rounded-lg shadow-sm bg-white hover:shadow-md transition">
+      <h2 class="text-lg font-semibold text-gray-800 mb-2">{{ prompt.title }}</h2>
+      <p class="text-sm text-gray-500 mb-3">{{ prompt.get_category_display }}</p>
+
+      <pre id="prompt-{{ prompt.id }}"
+           class="bg-gray-50 p-3 rounded text-sm text-gray-700 whitespace-pre-wrap break-words mb-4">
+        {{ prompt.content }}
+      </pre>
+
+      <div class="flex gap-3">
+        <button onclick="copyPrompt({{ prompt.id }})"
+                class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
+          Copy
+        </button>
+        <a href="{% url 'prompt_generator:generator_detail' prompt.id %}"
+           class="px-3 py-1 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 text-sm">
+          View
+        </a>
+      </div>
+    </div>
+  {% empty %}
+    <p class="text-gray-600">No prompts found.</p>
+  {% endfor %}
+</div>
+
+
+  <script>
+    function copyPrompt(id) {
+      const text = document.getElementById("prompt-" + id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Prompt copied!");
+      });
+    }
+  </script>
+{% endblock %}

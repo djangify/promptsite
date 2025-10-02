@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Prompt Library{% endblock %}</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="{% url 'prompt_generator:generator_list' %}" class="text-xl font-bold text-gray-800">
+        Promptsite
+      </a>
+      <nav class="space-x-6">
+        <a href="{% url 'prompt_generator:generator_list' %}" class="text-gray-600 hover:text-gray-900">Home</a>
+        <a href="#" class="text-gray-600 hover:text-gray-900">About</a>
+        <a href="#" class="text-gray-600 hover:text-gray-900">Contact</a>
+        <a href="#" class="text-gray-600 hover:text-gray-900">Dashboard</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 py-8">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t py-6 mt-8">
+    <div class="max-w-7xl mx-auto px-4 text-sm text-gray-500 flex justify-between">
+      <p>&copy; {{ now|date:"Y" }} Promptsite. All rights reserved.</p>
+      <div class="space-x-4">
+        <a href="#" class="hover:text-gray-700">About</a>
+        <a href="#" class="hover:text-gray-700">Contact</a>
+        <a href="#" class="hover:text-gray-700">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

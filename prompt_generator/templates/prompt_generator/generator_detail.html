@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="bg-white shadow rounded-lg p-6">
+      <h2 class="text-3xl font-bold mb-3 text-gray-800">{{ prompt.title }}</h2>
+      <p class="text-sm text-gray-500 mb-5">
+        <strong>Category:</strong> {{ prompt.get_category_display }}
+      </p>
+      
+      <pre id="prompt-text" 
+           class="bg-gray-50 p-4 rounded text-gray-700 text-sm mb-6">{{ prompt.content }}</pre>
+      
+      <button onclick="copyPrompt()" 
+              class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+        Copy Prompt
+      </button>
+      <a href="{% url 'prompt_generator:generator_list' %}" 
+         class="ml-3 px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300">
+        Back to List
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function copyPrompt() {
+      const text = document.getElementById("prompt-text").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Prompt copied!");
+      });
+    }
+  </script>
+{% endblock %}

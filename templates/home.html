@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+  <div class="max-w-3xl mx-auto text-center">
+    <h1 class="text-4xl font-bold mb-6">Welcome to Promptsite</h1>
+    <p class="text-lg text-gray-600 mb-8">
+      A free library of ready-to-use AI prompts for business owners. 
+      Copy, paste, and save time on marketing, content, and more.
+    </p>
+    <a href="{% url 'prompt_generator:generator_list' %}" 
+       class="px-6 py-3 bg-blue-600 text-white text-lg rounded hover:bg-blue-700">
+      Browse Prompts
+    </a>
+  </div>
+{% endblock %}

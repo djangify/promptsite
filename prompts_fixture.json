@@ -1,0 +1,112 @@
+[
+  {
+    "model": "prompts.prompt",
+    "pk": 31,
+    "fields": {
+      "title": "Google Business Description",
+      "content": "Write a friendly and engaging Google Business Profile description for a [business type] in [business location]. Highlight what makes this [business type] unique and why customers should choose it.",
+      "category": "local",
+      "tags": "google business, local seo",
+      "created_at": "2025-01-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "prompts.prompt",
+    "pk": 32,
+    "fields": {
+      "title": "SEO Blog Outline",
+      "content": "Generate a detailed blog post outline about 'Top 10 Tips for Choosing a [service] in [business location].' Include an introduction, key points, and a call to action.",
+      "category": "seo",
+      "tags": "blog, seo",
+      "created_at": "2025-01-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "prompts.prompt",
+    "pk": 33,
+    "fields": {
+      "title": "Instagram Captions",
+      "content": "Write 5 creative Instagram captions for a [business type] promoting their latest [product or service]. Keep captions short, fun, and add emojis.",
+      "category": "social",
+      "tags": "instagram, social media",
+      "created_at": "2025-01-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "prompts.prompt",
+    "pk": 34,
+    "fields": {
+      "title": "Email Newsletter",
+      "content": "Draft a professional but approachable email newsletter for a [business type]. Announce a special offer or seasonal promotion. Keep the tone clear and engaging.",
+      "category": "email",
+      "tags": "email marketing, newsletter",
+      "created_at": "2025-01-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "prompts.prompt",
+    "pk": 35,
+    "fields": {
+      "title": "Sales Page Headline",
+      "content": "Write 5 persuasive sales page headlines for a [business type] offering [service]. Headlines should be benefit-driven and customer-focused.",
+      "category": "sales",
+      "tags": "sales, landing page",
+      "created_at": "2025-01-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "prompts.prompt",
+    "pk": 36,
+    "fields": {
+      "title": "Customer Engagement Questions",
+      "content": "Create 5 engaging questions that a [business type] could use on social media to start conversations with local customers.",
+      "category": "customer",
+      "tags": "customer engagement, social",
+      "created_at": "2025-01-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "prompts.prompt",
+    "pk": 37,
+    "fields": {
+      "title": "Advertising Copy",
+      "content": "Write a short and persuasive ad copy for a [business type] promoting their [service] in [business location]. Emphasize urgency or uniqueness.",
+      "category": "ads",
+      "tags": "ads, ppc",
+      "created_at": "2025-01-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "prompts.prompt",
+    "pk": 38,
+    "fields": {
+      "title": "Facebook Ad Variations",
+      "content": "Generate 3 versions of a Facebook ad headline + body text for a [business type]. Each should target different customer motivations.",
+      "category": "ads",
+      "tags": "facebook ads, advertising",
+      "created_at": "2025-01-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "prompts.prompt",
+    "pk": 39,
+    "fields": {
+      "title": "Video Script",
+      "content": "Write a 60-second video script for a [business type] to introduce their services in [business location]. Keep it clear, friendly, and engaging.",
+      "category": "video",
+      "tags": "video script, content",
+      "created_at": "2025-01-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "prompts.prompt",
+    "pk": 40,
+    "fields": {
+      "title": "FAQ Prompts",
+      "content": "List 5 frequently asked questions (and short answers) that a [business type] might receive from customers in [business location].",
+      "category": "customer",
+      "tags": "faq, support",
+      "created_at": "2025-01-01T12:00:00Z"
+    }
+  }
+]
