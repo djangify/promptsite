@@ -8,7 +8,9 @@ class PromptFillForm(forms.Form):
     )
     business_type = forms.CharField(
         required=False,
-        widget=forms.TextInput(attrs={"placeholder": "e.g. Florist, Restaurant"}),
+        widget=forms.TextInput(
+            attrs={"placeholder": "e.g. Florist, Restaurant, Gym etc"}
+        ),
     )
     business_location = forms.CharField(
         required=False,
@@ -20,5 +22,14 @@ class PromptFillForm(forms.Form):
         required=False,
         widget=forms.TextInput(
             attrs={"placeholder": "e.g. Families, young professionals, local foodies"}
+        ),
+    )
+    additional_info = forms.CharField(
+        required=False,
+        widget=forms.Textarea(
+            attrs={
+                "placeholder": "e.g. Award-winning yoga studio, Open Until 11pm, Limited parking",
+                "rows": 2,
+            }
         ),
     )

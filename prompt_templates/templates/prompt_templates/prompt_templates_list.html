@@ -1,18 +1,52 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="max-w-4xl mx-auto p-6">
-  <h1 class="text-2xl font-bold mb-6">Available Prompt Templates</h1>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    {% for template in templates %}
-      <div class="p-4 border rounded shadow hover:shadow-md transition">
-        <h2 class="text-lg font-semibold mb-2">{{ template.title }}</h2>
-        <p class="text-sm text-gray-600 mb-4 line-clamp-3">{{ template.template_text }}</p>
-        <a href="{% url 'prompt_templates:prompt_fill' template.pk %}"
-           class="px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
-          Use Template
+  <h1 class="text-3xl font-bold mb-6">Prompt Templates</h1>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {% for template in templates %}
+    <div class="p-6 border border-gray-200 rounded-lg shadow-sm bg-white hover:shadow-md transition flex flex-col">
+      <div class="flex justify-between items-start mb-2">
+        <div>
+          <h2 class="text-lg font-semibold text-gray-800">{{ template.title }}</h2>
+          <p class="text-sm text-gray-500">Dynamic Template</p>
+        </div>
+
+        {% if user.is_authenticated %}
+        <!-- Star button -->
+        <button class="favouriteBtn {% if template.id in saved_prompt_ids %}text-yellow-500{% else %}text-gray-400{% endif %}"
+                data-prompt-id="{{ template.id }}">
+          ★
+        </button>
+        {% endif %}
+      </div>
+
+      <pre id="prompt-{{ template.id }}"
+           class="bg-gray-50 p-3 rounded text-sm text-gray-700 whitespace-pre-wrap break-words mb-4 flex-grow">
+        {{ template.template_text }}
+      </pre>
+
+      <div class="flex gap-3 mt-auto">
+        <button onclick="copyPrompt({{ template.id }})"
+                class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
+          Copy
+        </button>
+        <a href="{% url 'prompt_templates:prompt_fill' template.slug %}"
+           class="px-3 py-1 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 text-sm">
+          View
         </a>
       </div>
-    {% endfor %}
-  </div>
+    </div>
+  {% empty %}
+    <p class="text-gray-600">No templates found.</p>
+  {% endfor %}
 </div>
+
+  <script>
+    function copyPrompt(id) {
+      const text = document.getElementById("prompt-" + id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Prompt copied!");
+      });
+    }
+  </script>
 {% endblock %}

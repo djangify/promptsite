@@ -22,7 +22,7 @@
       </a>
       <nav class="space-x-6">
         <a href="{% url 'prompt_generator:generator_list' %}" class="text-gray-600 hover:text-gray-900">Home</a>
-        <a href="#" class="text-gray-600 hover:text-gray-900">About</a>
+        <a href="{% url 'prompt_templates:template_list' %}" class="text-gray-600 hover:text-gray-900">Templates</a>
         <a href="#" class="text-gray-600 hover:text-gray-900">Contact</a>
         <a href="{% url 'accounts:dashboard' %}" class="text-gray-600 hover:text-gray-900">Dashboard</a>
       </nav>
@@ -49,6 +49,7 @@
   <!-- Scripts -->
     <script src="{% static 'js/messages.js' %}"></script>
     <script src="{% static 'js/favourite-prompt.js' %}"></script>
+    <script src="{% static 'js/favourite-template.js' %}"></script>
  
     
     {% block scripts %}{% endblock %}

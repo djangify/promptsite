@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
 from .models import PromptTemplate
 from .forms import PromptFillForm
 from .utils import generate_prompt
+from django.http import HttpResponse
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
 
 def template_list_view(request):
@@ -12,8 +14,8 @@ def template_list_view(request):
     )
 
 
-def prompt_fill_view(request, pk):
-    template = get_object_or_404(PromptTemplate, pk=pk)
+def prompt_fill_view(request, slug):
+    template = get_object_or_404(PromptTemplate, slug=slug)
     form = PromptFillForm(request.POST or None)
     generated = None
 
@@ -21,11 +23,9 @@ def prompt_fill_view(request, pk):
         generated = generate_prompt(
             template.template_text, request.user, form.cleaned_data
         )
-
-        # If "download" button pressed, return text file
         if "download" in request.POST:
             response = HttpResponse(generated, content_type="text/plain")
-            filename = f"{template.title.replace(' ', '_')}.txt"
+            filename = f"{template.slug}.txt"
             response["Content-Disposition"] = f'attachment; filename="{filename}"'
             return response
 
@@ -36,5 +36,31 @@ def prompt_fill_view(request, pk):
             "template": template,
             "form": form,
             "generated": generated,
+        },
+    )
+
+
+@login_required
+def save_template(request, slug):
+    template = get_object_or_404(PromptTemplate, slug=slug)
+    user = request.user
+
+    # Check if already saved
+    if template in user.profile.saved_templates.all():
+        user.profile.saved_templates.remove(template)
+        return JsonResponse({"status": "removed"})
+    else:
+        user.profile.saved_templates.add(template)
+        return JsonResponse({"status": "saved"})
+
+
+@login_required
+def dashboard_saved_templates(request):
+    saved_templates = request.user.profile.saved_templates.all()
+    return render(
+        request,
+        "dashboard_saved_templates.html",
+        {
+            "saved_templates": saved_templates,
         },
     )

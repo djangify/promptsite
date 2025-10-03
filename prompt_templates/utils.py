@@ -4,9 +4,10 @@ def generate_prompt(template_text, user, form_data=None):
         "business_type": None,
         "business_location": None,
         "target_audience": None,
+        "additional_info": None,
     }
 
-    # 1. Pull from Profile if available
+    # Profile (optional)
     if user.is_authenticated and hasattr(user, "profile"):
         profile = user.profile
         values.update(
@@ -18,13 +19,13 @@ def generate_prompt(template_text, user, form_data=None):
             }
         )
 
-    # 2. Override with form input if provided
+    # Form overrides
     if form_data:
         for k in values.keys():
             if form_data.get(k):
                 values[k] = form_data.get(k)
 
-    # 3. Replace placeholders; leave as [placeholder] if still empty
+    # Replace placeholders
     for key, val in values.items():
         placeholder = f"[{key}]"
         template_text = template_text.replace(placeholder, val or placeholder)
