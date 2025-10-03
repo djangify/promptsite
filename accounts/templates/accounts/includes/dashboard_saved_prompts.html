@@ -4,14 +4,24 @@
   {% if saved_prompts %}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {% for prompt in saved_prompts %}
-        <div class="bg-white border border-gray-200 rounded-lg shadow p-4 hover:shadow-md transition">
-          <h3 class="text-base font-semibold text-gray-800 mb-2 line-clamp-2">
-            {{ prompt.title }}
-          </h3>
-          <p class="text-sm text-gray-600 mb-4 line-clamp-3">
+        <div class="saved-prompt-card bg-white border border-gray-200 rounded-lg shadow p-4 hover:shadow-md transition flex flex-col">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="text-base font-semibold text-gray-800 line-clamp-2">
+              {{ prompt.title }}
+            </h3>
+
+            <!-- Star button -->
+            <button class="favouriteBtn text-yellow-500"
+                    data-prompt-id="{{ prompt.id }}">
+              ★
+            </button>
+          </div>
+
+          <p class="text-sm text-gray-600 mb-4 line-clamp-3 flex-grow">
             {{ prompt.content }}
           </p>
-          <a href="{% url 'prompts:detail' prompt.id %}"
+
+          <a href="{% url 'prompt_generator:generator_detail' prompt.id %}"
              class="inline-block mt-auto text-sm font-medium text-blue-600 hover:text-blue-800">
             View Prompt →
           </a>

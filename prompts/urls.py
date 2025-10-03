@@ -29,7 +29,4 @@ urlpatterns = [
         views.import_template,
         name="import_template",
     ),
-    path(
-        "save/<int:prompt_id>/", views.toggle_saved_prompt, name="toggle_saved_prompt"
-    ),
 ]
