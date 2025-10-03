@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load widget_tweaks %}
+
 {% block content %}
 <div class="max-w-2xl mx-auto p-6 bg-white rounded shadow">
   <h1 class="text-2xl font-bold mb-4">{{ template.title }}</h1>
@@ -7,18 +9,49 @@
     {% csrf_token %}
     {% for field in form %}
       <div>
-        <label class="block text-sm font-medium">{{ field.label }}</label>
-        {{ field }}
+        <label class="block text-sm font-medium text-gray-700">{{ field.label }}</label>
+        {{ field|add_class:"w-full border rounded px-3 py-2" }}
+        {% if field.errors %}
+          <p class="text-red-600 text-sm">{{ field.errors|join:", " }}</p>
+        {% endif %}
       </div>
     {% endfor %}
-    <button class="px-4 py-2 bg-blue-600 text-white rounded">Generate</button>
+
+    <div class="mt-4 space-x-2">
+      <button name="generate" type="submit"
+              class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+        Generate
+      </button>
+      <button name="download" type="submit"
+              class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+        Download
+      </button>
+      <button type="button" onclick="copyFormPrompt()"
+              class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-800">
+        Copy
+      </button>
+    </div>
   </form>
 
   {% if generated %}
-  <div class="mt-6 p-4 bg-gray-100 rounded">
+  <div class="mt-6 p-4 bg-gray-100 rounded relative">
     <h2 class="font-semibold mb-2">Generated Prompt</h2>
-    <pre class="whitespace-pre-wrap">{{ generated }}</pre>
+    <pre id="generated-prompt" class="whitespace-pre-wrap">{{ generated }}</pre>
   </div>
+
+  <script>
+    function copyFormPrompt() {
+      const generatedBlock = document.getElementById("generated-prompt");
+      if (generatedBlock) {
+        const text = generatedBlock.innerText;
+        navigator.clipboard.writeText(text).then(() => {
+          alert("Prompt copied!");
+        });
+      } else {
+        alert("Please generate a prompt first before copying.");
+      }
+    }
+  </script>
   {% endif %}
 </div>
 {% endblock %}

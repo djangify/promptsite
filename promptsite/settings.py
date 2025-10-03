@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "prompts",
     "accounts",
     "prompt_templates",
+    "widget_tweaks",
 ]
 
 MIDDLEWARE = [

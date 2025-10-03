@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-4xl mx-auto p-6">
+  <h1 class="text-2xl font-bold mb-6">Available Prompt Templates</h1>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {% for template in templates %}
+      <div class="p-4 border rounded shadow hover:shadow-md transition">
+        <h2 class="text-lg font-semibold mb-2">{{ template.title }}</h2>
+        <p class="text-sm text-gray-600 mb-4 line-clamp-3">{{ template.template_text }}</p>
+        <a href="{% url 'prompt_templates:prompt_fill' template.pk %}"
+           class="px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm">
+          Use Template
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

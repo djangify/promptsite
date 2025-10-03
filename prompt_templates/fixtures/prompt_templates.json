@@ -1,0 +1,34 @@
+[
+  {
+    "model": "prompt_templates.prompttemplate",
+    "pk": 1,
+    "fields": {
+      "title": "Instagram Ad",
+      "template_text": "Write a compelling Instagram ad for a [business_type] located in [business_location], aimed at [target_audience]. Highlight why [business_name] is the best choice."
+    }
+  },
+  {
+    "model": "prompt_templates.prompttemplate",
+    "pk": 2,
+    "fields": {
+      "title": "Email Subject Line",
+      "template_text": "Create 5 engaging email subject lines for a [business_type] in [business_location] that wants to attract more [target_audience]."
+    }
+  },
+  {
+    "model": "prompt_templates.prompttemplate",
+    "pk": 3,
+    "fields": {
+      "title": "Local Service Promotion",
+      "template_text": "Write a short Facebook post promoting [business_name], a [business_type] based in [business_location], designed to appeal to [target_audience]. Include a strong call-to-action."
+    }
+  },
+  {
+    "model": "prompt_templates.prompttemplate",
+    "pk": 4,
+    "fields": {
+      "title": "Landing Page Intro",
+      "template_text": "Write a welcoming introduction paragraph for the landing page of [business_name], a [business_type] in [business_location], focusing on attracting [target_audience]."
+    }
+  }
+]
