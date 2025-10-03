@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "prompt_generator",
     "prompts",
     "accounts",
+    "prompt_templates",
 ]
 
 MIDDLEWARE = [
