@@ -21,9 +21,18 @@ document.addEventListener("DOMContentLoaded", function () {
           } else if (data.status === "removed") {
             this.classList.remove("text-yellow-500");
             this.classList.add("text-gray-400");
-            if (card) card.remove(); // remove from dashboard immediately
-          }
 
+            // remove from dashboard immediately
+            if (card) {
+              card.remove();
+            }
+
+            // remove detail wrapper if on detail page
+            const detailWrapper = document.querySelector(".detail-wrapper");
+            if (detailWrapper) {
+              detailWrapper.remove();
+            }
+          }
         })
         .catch((error) => console.error("Error toggling favourite:", error));
     });
