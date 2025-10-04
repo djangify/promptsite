@@ -1,9 +1,19 @@
 {% extends "base.html" %}
-{% load widget_tweaks %}
+{% load widget_tweaks static %}
 
 {% block content %}
 <div class="max-w-2xl mx-auto p-6 bg-white rounded shadow">
-  <h1 class="text-2xl font-bold mb-4">{{ template.title }}</h1>
+  <div class="flex justify-between items-start mb-4">
+    <h1 class="text-2xl font-bold">{{ template.title }}</h1>
+
+    {% if user.is_authenticated %}
+    <button
+      class="favouriteTemplateBtn {% if template.slug in saved_template_slugs %}text-yellow-500{% else %}text-gray-400{% endif %}"
+      data-template-slug="{{ template.slug }}">
+      ★
+    </button>
+    {% endif %}
+  </div>
 
   <form method="post" class="space-y-4">
     {% csrf_token %}
@@ -57,4 +67,6 @@
   </script>
   {% endif %}
 </div>
+
+<script src="{% static 'js/favourite-template.js' %}"></script>
 {% endblock %}

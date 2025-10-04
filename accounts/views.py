@@ -10,10 +10,9 @@ from django.utils.html import strip_tags
 from django.conf import settings
 from django.urls import reverse
 from .models import Prompt
-
-
 from .forms import UserRegistrationForm, UserProfileForm
 from .models import EmailVerificationToken
+from prompt_templates.models import PromptTemplate
 
 
 def register_view(request):
@@ -186,3 +185,21 @@ def add_favourite_prompt(request, prompt_id):
 
     messages.success(request, message)
     return redirect(request.META.get("HTTP_REFERER", "core:home"))
+
+
+@login_required
+def add_favourite_template(request, slug):
+    template = get_object_or_404(PromptTemplate, slug=slug)
+    user_profile = request.user.profile
+
+    if template in user_profile.saved_templates.all():
+        user_profile.saved_templates.remove(template)
+        status = "removed"
+    else:
+        user_profile.saved_templates.add(template)
+        status = "saved"
+
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
+        return JsonResponse({"status": status})
+
+    return redirect(request.META.get("HTTP_REFERER", "accounts:dashboard"))

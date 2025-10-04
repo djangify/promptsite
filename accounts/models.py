@@ -20,8 +20,12 @@ class UserProfile(models.Model):
     business_location = models.CharField(max_length=255, blank=True, null=True)
     target_audience = models.CharField(max_length=255, blank=True, null=True)
 
-    # NEW: link to saved prompts
+    # link to saved prompts
     saved_prompts = models.ManyToManyField(Prompt, blank=True, related_name="saved_by")
+    # link to saved templates
+    saved_templates = models.ManyToManyField(
+        "prompt_templates.PromptTemplate", blank=True, related_name="saved_by"
+    )
 
     def __str__(self):
         return f"{self.user.username}'s profile"
