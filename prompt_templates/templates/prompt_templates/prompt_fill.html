@@ -15,6 +15,17 @@
     {% endif %}
   </div>
 
+  <!-- Show auto-filled profile data -->
+  {% if filled_text %}
+    <div class="mb-6 p-4 bg-gray-50 border border-gray-200 rounded">
+      <h2 class="font-semibold text-gray-800">Template Preview with Your Profile</h2>
+       <p class="text-sm italic mb-2 text-gray-600">
+        Your profile information is already filled in. The boxes below let you adjust or add extra details. 
+      </p>
+      <pre class="whitespace-pre-wrap text-sm text-gray-700">{{ filled_text }}</pre>
+    </div>
+  {% endif %}
+
   <form method="post" class="space-y-4">
     {% csrf_token %}
     {% for field in form %}
@@ -68,5 +79,4 @@
   {% endif %}
 </div>
 
-<script src="{% static 'js/favourite-template.js' %}"></script>
 {% endblock %}

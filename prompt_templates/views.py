@@ -25,15 +25,28 @@ def template_list_view(request):
     )
 
 
+@login_required
 def prompt_fill_view(request, slug):
     template = get_object_or_404(PromptTemplate, slug=slug)
     form = PromptFillForm(request.POST or None)
     generated = None
+    profile = request.user.profile  # <-- add this
+
+    # Fill placeholders in template text with profile info
+    base_text = template.template_text
+    replacements = {
+        "[business_name]": profile.business_name or "[business_name]",
+        "[business_type]": profile.business_type or "[business_type]",
+        "[business_location]": profile.business_location or "[business_location]",
+        "[target_audience]": profile.target_audience or "[target_audience]",
+        "[bio]": profile.bio or "[bio]",
+    }
+    for placeholder, value in replacements.items():
+        base_text = base_text.replace(placeholder, value)
 
     if request.method == "POST" and form.is_valid():
-        generated = generate_prompt(
-            template.template_text, request.user, form.cleaned_data
-        )
+        # Use the filled base_text rather than the raw template text
+        generated = generate_prompt(base_text, request.user, form.cleaned_data)
         if "download" in request.POST:
             response = HttpResponse(generated, content_type="text/plain")
             filename = f"{template.slug}.txt"
@@ -54,6 +67,7 @@ def prompt_fill_view(request, slug):
             "form": form,
             "generated": generated,
             "saved_template_slugs": saved_template_slugs,
+            "filled_text": base_text,
         },
     )
 
