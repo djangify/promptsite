@@ -11,7 +11,7 @@
             </h3>
 
             <!-- Star button -->
-            <button class="favouriteTemplateBtn {% if template.slug in saved_template_slugs %}text-yellow-500{% else %}text-gray-400{% endif %}"
+            <button class="favouriteTemplateBtn {% if template in saved_templates %}text-yellow-500{% else %}text-gray-400{% endif %}"
                     data-template-slug="{{ template.slug }}">
               ★
             </button>

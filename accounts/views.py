@@ -145,7 +145,12 @@ def logout_view(request):
 @login_required
 def dashboard_view(request):
     saved_prompts = request.user.profile.saved_prompts.all()
-    return render(request, "accounts/dashboard.html", {"saved_prompts": saved_prompts})
+    saved_templates = request.user.profile.saved_templates.all()
+    context = {
+        "saved_prompts": saved_prompts,
+        "saved_templates": saved_templates,
+    }
+    return render(request, "accounts/dashboard.html", context)
 
 
 @login_required
