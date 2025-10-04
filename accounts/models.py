@@ -12,7 +12,7 @@ from prompts.models import Prompt
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     verified = models.BooleanField(default=False)
-    bio = models.TextField(max_length=500, blank=True)
+    bio = models.TextField(max_length=650, blank=True)
 
     # Business fields
     business_name = models.CharField(max_length=255, blank=True, null=True)
